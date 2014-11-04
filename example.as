@@ -13,7 +13,7 @@ package {
 			HypixelApi = new hypixelAPI(false);
 			HypixelApi.addEventListener(Events.keyApproved, KeyApproved);
 			HypixelApi.addEventListener(Events.playerLoaded, showPlayerDatis);
-			HypixelApi.loadKey("64bd424e-ccb0-42ed-8b66-6e42a135afb4");
+			HypixelApi.loadKey("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx");
 		}
 		private function KeyApproved(evt: keyApproved): void {
 			HypixelApi.loadPlayerByName("codename_b");
