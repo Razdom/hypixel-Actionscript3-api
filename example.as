@@ -3,9 +3,7 @@ package {
 	import flash.display.MovieClip;
 	import com.hypixel.*;
 	import com.hypixel.data.*;
-	import com.hypixel.*;
-	import com.hypixel.events.playerLoaded;
-	import com.hypixel.events.keyApproved;
+	import com.hypixel.events.*;
 
 	public class example extends MovieClip {
 
