@@ -1,7 +1,7 @@
 hypixel-Actionscript3-api
 =========================
 
-This is a ActionScript implementation of the Hypixel API
+This is a ActionScript3 implementation of the Hypixel API
 
 Dependencies
 ---------------------------
