@@ -78,8 +78,19 @@ package com.hypixel {
 				loader.load(request);
 			}
 		}
+		public function loadFriendsByName(name: String) {
+			if(approvedKey) {
+				var loader: URLLoader = new URLLoader();
+				var request: URLRequest = new URLRequest(URL_BASE + "friends?key=" + this.apiKey + "&player=" + name);
+				loader.addEventListener(Event.COMPLETE, getFriends);
+				loader.load(request);
+			}
+		}
 		public function getPlayer(name: String) {
 			return players[name.toLocaleLowerCase()];
+		}
+		public function getGuilds(name: String) {
+			return guilds[name.toLocaleLowerCase()];
 		}
 		private function getKeyInfo(): void {
 			var loader: URLLoader = new URLLoader();
@@ -123,6 +134,13 @@ package com.hypixel {
 			if(data['success']) {
 				this.loadGuildById(data['guild']);
 				debugTrace("get data of guild id: " + data['guild']);
+			}
+		}
+		private function getFriends(evt: Event): void {
+			var data: Object = jsonDecode(evt.target.data);
+			if(data['success']) {
+				dispatchEvent(new friendsLoaded(data['records']));
+				debugTrace("friends loaded.");
 			}
 		}
 		private function debugTrace(text: String): void {
