@@ -11,7 +11,7 @@ package {
 
 		public var HypixelApi: hypixelAPI;
 
-		public function hypixel() {
+		public function example() {
 			HypixelApi = new hypixelAPI(false);
 			HypixelApi.addEventListener(Events.keyApproved, KeyApproved);
 			HypixelApi.addEventListener(Events.playerLoaded, showPlayerDatis);
