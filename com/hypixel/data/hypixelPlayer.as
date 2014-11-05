@@ -42,13 +42,20 @@ package com.hypixel.data {
 			return data['silence'];
 		}
 		public function vanished(): Boolean {
-			return data['vanished'];
+			if(data['vanished'] != null) {
+				return data['vanished'];
+			} else {
+				return false;
+			}
 		}
 		public function packageRank(): String {
-			return data['packageRank'];
-		}
-		public function newPackageRank(): String {
-			return data['newPackageRank'];
+			if(data['newPackageRank'] != null) {
+				return data['newPackageRank'];
+			} else if(data['packageRank'] != null) {
+				return data['packageRank'];
+			} else {
+				return "guest";
+			}
 		}
 		public function prefix(): String {
 			return data['prefix'];
@@ -63,13 +70,17 @@ package com.hypixel.data {
 			return data['lastLogin'];
 		}
 		public function eulaCoins(): Boolean {
-			return data['eulaCoins'];
+			if(data['eulaCoins'] != null) {
+				return data['eulaCoins'];
+			} else {
+				return false;
+			}
 		}
 		public function karma(): int {
 			return data['karma'];
 		}
 		public function networkLevel(): int {
-			return data['networkLevel'];
+			return data['networkLevel'] + 1;
 		}
 		public function networkExp(): int {
 			return data['networkExp'];
@@ -108,16 +119,32 @@ package com.hypixel.data {
 			return data['mostRecentMinecraftVersion'];
 		}
 		public function thanksSent(): int {
-			return data['thanksSent'];
+			if(data['thanksSent'] != null) {
+				return data['thanksSent'];
+			} else {
+				return 0;
+			}
 		}
 		public function thanksReceived(): int {
-			return data['thanksReceived'];
+			if(data['thanksReceived'] != null) {
+				return data['thanksReceived'];
+			} else {
+				return 0;
+			}
 		}
 		public function tipReceived(): int {
-			return data['tipReceived'];
+			if(data['tipReceived'] != null) {
+				return data['tipReceived'];
+			} else {
+				return 0;
+			}
 		}
 		public function tipsSent(): int {
-			return data['tipsSent'];
+			if(data['tipsSent'] != null) {
+				return data['tipsSent'];
+			} else {
+				return 0;
+			}
 		}
 		public function spectators_invisible(): Boolean {
 			return data['spectators_invisible'];
@@ -165,7 +192,11 @@ package com.hypixel.data {
 			return data['pp'];
 		}
 		public function fly(): Boolean {
-			return data['fly'];
+			if(data['fly'] != null) {
+				return data['fly'];
+			} else {
+				return false;
+			}
 		}
 		public function packages(): Array {
 			return data['packages'];
