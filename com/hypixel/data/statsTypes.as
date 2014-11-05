@@ -11,6 +11,7 @@ package com.hypixel.data {
 		public static const HungerGames: String = "HungerGames";
 		public static const Walls3: String = "Walls3";
 		public static const Spleef: String = "Spleef";
+		public static const TNTGames:String = "TNTGames";
 	}
 
 }
