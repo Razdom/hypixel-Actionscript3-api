@@ -20,8 +20,10 @@ package {
 		}
 		private function showPlayerDatis(evt: playerLoaded): void {
 			var player: hypixelPlayer = evt.getPlayer();
-			trace("Hi " + player.displayName());
-			trace("You kill " + player.stats(statsTypes.Walls3)['kills'] + " players in mega walls");
+			if(player != null){
+				trace("Hi " + player.displayName()+"!");
+				trace("You killed " + player.stats(statsTypes.Walls3)['kills'] + " players on mega walls.");
+			}
 		}
 	}
 
