@@ -100,7 +100,7 @@ package com.hypixel {
 		}
 		private function getKeyData(evt: Event): void {
 			var data: Object = jsonDecode(evt.target.data);
-			if(data['success']) {
+			if(data['success'] && data['record'] != null) {
 				debugTrace("key approved!");
 				keyData = data['record'];
 				approvedKey = true;
@@ -111,17 +111,20 @@ package com.hypixel {
 		}
 		private function getPlayerData(evt: Event): void {
 			var data: Object = jsonDecode(evt.target.data);
-			if(data['success']) {
-				var Name: String = data['player']['playername'];
+			if(data['success'] && data['player'] != null) {
+				var Name: String = String(data['player']['playername']);
 				var Player: hypixelPlayer = new hypixelPlayer(data['player']);
 				players[Name.toLocaleLowerCase()] = Player;
 				dispatchEvent(new playerLoaded(Player));
 				debugTrace("get data of player: " + Name);
+			}else{
+				dispatchEvent(new playerLoaded(null));
 			}
 		}
 		private function getGuildData(evt: Event): void {
+			trace("jhjk");
 			var data: Object = jsonDecode(evt.target.data);
-			if(data['success']) {
+			if(data['success'] && data['guild'] != null) {
 				var Name: String = data['guild']['name'];
 				var Guild: hypixelGuild = new hypixelGuild(data['guild']);
 				guilds[Name.toLocaleLowerCase()] = Guild;
@@ -131,14 +134,16 @@ package com.hypixel {
 		}
 		private function getFindGuildData(evt: Event): void {
 			var data: Object = jsonDecode(evt.target.data);
-			if(data['success']) {
+			if(data['success'] && data['guild'] != null) {
 				this.loadGuildById(data['guild']);
 				debugTrace("get data of guild id: " + data['guild']);
+			} else {
+				dispatchEvent(new guildLoaded(null));
 			}
 		}
 		private function getFriends(evt: Event): void {
 			var data: Object = jsonDecode(evt.target.data);
-			if(data['success']) {
+			if(data['success'] && data['records'] != null) {
 				dispatchEvent(new friendsLoaded(data['records']));
 				debugTrace("friends loaded.");
 			}
