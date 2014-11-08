@@ -1,12 +1,5 @@
 package com.hypixel.data {
 
-	import flash.display.MovieClip;
-	import flash.net.URLLoader;
-	import flash.net.URLRequest;
-	import flash.events.Event;
-	import com.adobe.serialization.json.JSON;
-
-
 	public class hypixelPlayer extends Object {
 
 		private var data: Object = {};
@@ -127,14 +120,14 @@ package com.hypixel.data {
 		}
 		public function thanksReceived(): int {
 			if(data['thanksReceived'] != null) {
-				return data['thanksReceived'];
+				return int(data['thanksReceived']);
 			} else {
 				return 0;
 			}
 		}
 		public function tipReceived(): int {
 			if(data['tipReceived'] != null) {
-				return data['tipReceived'];
+				return int(data['tipReceived']);
 			} else {
 				return 0;
 			}
