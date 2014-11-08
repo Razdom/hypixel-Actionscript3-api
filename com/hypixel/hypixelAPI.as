@@ -5,8 +5,11 @@ package com.hypixel {
 	import flash.net.URLRequest;
 	import flash.events.Event;
 	import com.adobe.serialization.json.JSON;
-	import com.hypixel.data.*;
+	import com.hypixel.data.hypixelPlayer;
 	import com.hypixel.events.*;
+	import com.hypixel.data.hypixelGuild;
+	import com.hypixel.data.hypixelSession;
+
 
 	public class hypixelAPI extends MovieClip {
 
@@ -17,6 +20,7 @@ package com.hypixel {
 		private var keyData: Object = {};
 		private var players: Array = [];
 		private var guilds: Array = [];
+		private var sessions: Array = [];
 
 
 		public function hypixelAPI(debug: Boolean = false): void {
@@ -80,15 +84,26 @@ package com.hypixel {
 			if(approvedKey) {
 				var loader: URLLoader = new URLLoader();
 				var request: URLRequest = new URLRequest(URL_BASE + "friends?key=" + this.apiKey + "&player=" + name);
-				loader.addEventListener(Event.COMPLETE, getFriends);
+				loader.addEventListener(Event.COMPLETE, getFriendsData);
+				loader.load(request);
+			}
+		}
+		public function loadSessionByName(name: String) {
+			if(approvedKey) {
+				var loader: URLLoader = new URLLoader();
+				var request: URLRequest = new URLRequest(URL_BASE + "session?key=" + this.apiKey + "&player=" + name);
+				loader.addEventListener(Event.COMPLETE, getSessionData);
 				loader.load(request);
 			}
 		}
 		public function getPlayer(name: String) {
 			return players[name.toLocaleLowerCase()];
 		}
-		public function getGuilds(name: String) {
+		public function getGuild(name: String) {
 			return guilds[name.toLocaleLowerCase()];
+		}
+		public function getSession(id: String) {
+			return sessions[id];
 		}
 		private function getKeyInfo(): void {
 			var loader: URLLoader = new URLLoader();
@@ -102,8 +117,9 @@ package com.hypixel {
 				debugTrace("key approved!");
 				keyData = data['record'];
 				approvedKey = true;
-				dispatchEvent(new keyApproved());
+				dispatchEvent(new keyApproved(true));
 			} else {
+				dispatchEvent(new keyApproved(false));
 				debugTrace(data['cause']);
 			}
 		}
@@ -115,12 +131,11 @@ package com.hypixel {
 				players[Name.toLocaleLowerCase()] = Player;
 				dispatchEvent(new playerLoaded(Player));
 				debugTrace("get data of player: " + Name);
-			}else{
+			} else {
 				dispatchEvent(new playerLoaded(null));
 			}
 		}
 		private function getGuildData(evt: Event): void {
-			trace("jhjk");
 			var data: Object = jsonDecode(evt.target.data);
 			if(data['success'] && data['guild'] != null) {
 				var Name: String = data['guild']['name'];
@@ -139,11 +154,21 @@ package com.hypixel {
 				dispatchEvent(new guildLoaded(null));
 			}
 		}
-		private function getFriends(evt: Event): void {
+		private function getFriendsData(evt: Event): void {
 			var data: Object = jsonDecode(evt.target.data);
 			if(data['success'] && data['records'] != null) {
 				dispatchEvent(new friendsLoaded(data['records']));
 				debugTrace("friends loaded.");
+			}
+		}
+		private function getSessionData(evt: Event): void {
+			var data: Object = jsonDecode(evt.target.data);
+			if(data['success'] && data['session'] != null) {
+				var session: hypixelSession = new hypixelSession(data['session']);
+				sessions[data['session']['_id']] = data['session'];
+				dispatchEvent(new sessionLoaded(session));
+			} else {
+				dispatchEvent(new sessionLoaded(null));
 			}
 		}
 		private function debugTrace(text: String): void {
