@@ -23,7 +23,7 @@ package {
 			var player: hypixelPlayer = evt.getPlayer();
 			if(player != null){
 				trace("Hi " + player.displayName()+"!");
-				trace("You killed " + player.stats(statsTypes.Walls3)['kills'] + " players on mega walls.");
+				trace("You killed " + player.stats(statsTypes.Walls3)['kills'] + " players on Mega Walls.");
 			}
 		}
 	}
