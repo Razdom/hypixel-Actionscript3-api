@@ -5,10 +5,8 @@ package com.hypixel {
 	import flash.net.URLRequest;
 	import flash.events.Event;
 	import com.adobe.serialization.json.JSON;
-	import com.hypixel.data.hypixelPlayer;
+	import com.hypixel.data.*;
 	import com.hypixel.events.*;
-	import com.hypixel.data.hypixelGuild;
-	import com.hypixel.data.hypixelSession;
 
 
 	public class hypixelAPI extends MovieClip {
