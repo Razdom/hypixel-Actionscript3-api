@@ -1,11 +1,5 @@
 package com.hypixel.data {
 
-	import flash.net.URLLoader;
-	import flash.net.URLRequest;
-	import flash.events.Event;
-	import com.adobe.serialization.json.JSON;
-
-
 	public class hypixelGuild extends Object {
 
 		private var data: Object = {};
