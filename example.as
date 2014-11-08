@@ -16,7 +16,8 @@ package {
 			HypixelApi.loadKey("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx");
 		}
 		private function KeyApproved(evt: keyApproved): void {
-			HypixelApi.loadPlayerByName("codename_b");
+			if(evt.getApproved())
+				HypixelApi.loadPlayerByName("codename_b");
 		}
 		private function showPlayerDatis(evt: playerLoaded): void {
 			var player: hypixelPlayer = evt.getPlayer();
