@@ -93,8 +93,12 @@ package com.hypixel.data {
 		public function testPass(): String {
 			return data['testPass'];
 		}
-		public function quests(): Object {
-			return data['quests'];
+		public function quests(): Array {
+			var quests: Array = [];
+			for(var i in data['quests']) {
+				quests.push(new hypixelQuest(i, data['quests'][i]));
+			}
+			return quests;
 		}
 		public function clock(): Boolean {
 			return data['clock'];
@@ -140,7 +144,18 @@ package com.hypixel.data {
 			}
 		}
 		public function spectators_invisible(): Boolean {
-			return data['spectators_invisible'];
+			if(data['spectators_invisible'] != null) {
+				return data['spectators_invisible'];
+			} else {
+				return false;
+			}
+		}
+		public function spec_spectators_invisible(): Boolean {
+			if(data['spec_spectators_invisible'] != null) {
+				return data['spec_spectators_invisible'];
+			} else {
+				return false;
+			}
 		}
 		public function spec_speed(): int {
 			return data['spec_speed'];
@@ -160,8 +175,8 @@ package com.hypixel.data {
 		public function vanityMeta(): Array {
 			return data['vanityMeta']['packages'];
 		}
-		public function wardrobe(): String {
-			return data['wardrobe'];
+		public function wardrobe(): Array {
+			return data['wardrobe'].split(",");
 		}
 		public function gadget(): String {
 			return data['gadget'];
@@ -176,7 +191,11 @@ package com.hypixel.data {
 			return data['petActive'];
 		}
 		public function auto_spawn_pet(): Boolean {
-			return data['auto_spawn_pet'];
+			if(data['auto_spawn_pet'] != null) {
+				return data['auto_spawn_pet'];
+			} else {
+				return false;
+			}
 		}
 		public function newClock(): String {
 			return data['newClock'];
@@ -204,7 +223,11 @@ package com.hypixel.data {
 			return data['knownAliases'];
 		}
 		public function seeRequests(): Boolean {
-			return data['seeRequests'];
+			if(data['seeRequests'] != null) {
+				return data['seeRequests'];
+			} else {
+				return true;
+			}
 		}
 		public function stats(type: String): Object {
 			if(data['stats'][type] != null) {
