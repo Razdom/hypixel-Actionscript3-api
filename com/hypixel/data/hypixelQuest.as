@@ -2,15 +2,15 @@ package com.hypixel.data {
 
 	public class hypixelQuest extends Object {
 
-		private var name: String;
+		private var nameQuest: String;
 		private var data: Object = {};
 
 		public function hypixelQuest(name: String, data: Object): void {
-			this.name = name;
+			this.nameQuest = name;
 			this.data = data;
 		}
 		public function name(): String {
-			return name;
+			return this.nameQuest;
 		}
 		public function completions(): Array {
 			return data['completions'];
