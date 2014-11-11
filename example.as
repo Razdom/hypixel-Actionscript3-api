@@ -17,13 +17,13 @@ package {
 		}
 		private function KeyApproved(evt: keyApproved): void {
 			if(evt.getApproved())
-				HypixelApi.loadPlayerByName("codename_b");
+				HypixelApi.loadPlayerByName("hypixel");
 		}
 		private function showPlayerDatis(evt: playerLoaded): void {
 			var player: hypixelPlayer = evt.getPlayer();
 			if(player != null){
 				trace("Hi " + player.displayName()+"!");
-				trace("You killed " + player.stats(statsTypes.Walls3)['kills'] + " players on Mega Walls.");
+				trace("You killed " + player.stats(statsTypes.Mega_Walls)['kills'] + " players on Mega Walls.");
 			}
 		}
 	}
