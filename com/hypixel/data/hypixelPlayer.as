@@ -19,9 +19,6 @@ package com.hypixel.data {
 		public function uuid(): String {
 			return data['uuid'];
 		}
-		public function rank(): String {
-			return data['rank'];
-		}
 		public function chat(): Boolean {
 			return data['chat'];
 		}
@@ -41,17 +38,16 @@ package com.hypixel.data {
 				return false;
 			}
 		}
-		public function packageRank(): String {
-			if(data['newPackageRank'] != null) {
+		public function rank(): String {
+			if(data['rank'] != null) {
+				return data['rank'];
+			} else if(data['newPackageRank'] != null) {
 				return data['newPackageRank'];
 			} else if(data['packageRank'] != null) {
 				return data['packageRank'];
 			} else {
 				return "guest";
 			}
-		}
-		public function prefix(): String {
-			return data['prefix'];
 		}
 		public function mutedTime(): Boolean {
 			return data['mutedTime'];
