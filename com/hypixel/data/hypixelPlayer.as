@@ -49,6 +49,9 @@ package com.hypixel.data {
 				return "guest";
 			}
 		}
+		public function prefix(): String {
+			return data['prefix'];
+		}
 		public function mutedTime(): Boolean {
 			return data['mutedTime'];
 		}
