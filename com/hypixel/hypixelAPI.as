@@ -5,9 +5,8 @@ package com.hypixel {
 	import flash.net.URLRequest;
 	import flash.events.Event;
 	import com.adobe.serialization.json.JSON;
-	import com.hypixel.data.*;
 	import com.hypixel.events.*;
-
+	import com.hypixel.objects.*;
 
 	public class hypixelAPI extends MovieClip {
 
@@ -32,13 +31,11 @@ package com.hypixel {
 			}
 		}
 		public function getApiOwner(): String {
-			if(approvedKey) {
+			if(approvedKey)
 				return keyData['owner'];
-			} else {
-				return "";
-			}
+			return "";
 		}
-		public function loadGuildById(id: String) {
+		public function loadGuildById(id: String) :void{
 			if(approvedKey) {
 				var loader: URLLoader = new URLLoader();
 				var request: URLRequest = new URLRequest(URL_BASE + "guild?key=" + this.apiKey + "&id=" + id);
@@ -46,7 +43,7 @@ package com.hypixel {
 				loader.load(request);
 			}
 		}
-		public function loadGuildByName(name: String) {
+		public function loadGuildByName(name: String) :void{
 			if(approvedKey) {
 				var loader: URLLoader = new URLLoader();
 				var request: URLRequest = new URLRequest(URL_BASE + "findGuild?key=" + this.apiKey + "&byName=" + name);
@@ -54,7 +51,7 @@ package com.hypixel {
 				loader.load(request);
 			}
 		}
-		public function loadGuildByPlayerName(name: String) {
+		public function loadGuildByPlayerName(name: String) :void{
 			if(approvedKey) {
 				var loader: URLLoader = new URLLoader();
 				var request: URLRequest = new URLRequest(URL_BASE + "findGuild?key=" + this.apiKey + "&byPlayer=" + name);
@@ -62,7 +59,7 @@ package com.hypixel {
 				loader.load(request);
 			}
 		}
-		public function loadPlayerByName(name: String) {
+		public function loadPlayerByName(name: String) :void{
 			if(approvedKey) {
 				var loader: URLLoader = new URLLoader();
 				var request: URLRequest = new URLRequest(URL_BASE + "player?key=" + this.apiKey + "&name=" + name);
@@ -70,7 +67,7 @@ package com.hypixel {
 				loader.load(request);
 			}
 		}
-		public function loadPlayerByUUID(uuid: String) {
+		public function loadPlayerByUUID(uuid: String) :void{
 			if(approvedKey) {
 				var loader: URLLoader = new URLLoader();
 				var request: URLRequest = new URLRequest(URL_BASE + "player?key=" + this.apiKey + "&uuid=" + uuid);
@@ -78,7 +75,7 @@ package com.hypixel {
 				loader.load(request);
 			}
 		}
-		public function loadFriendsByName(name: String) {
+		public function loadFriendsByName(name: String) :void{
 			if(approvedKey) {
 				var loader: URLLoader = new URLLoader();
 				var request: URLRequest = new URLRequest(URL_BASE + "friends?key=" + this.apiKey + "&player=" + name);
@@ -86,7 +83,7 @@ package com.hypixel {
 				loader.load(request);
 			}
 		}
-		public function loadSessionByName(name: String) {
+		public function loadSessionByName(name: String) :void{
 			if(approvedKey) {
 				var loader: URLLoader = new URLLoader();
 				var request: URLRequest = new URLRequest(URL_BASE + "session?key=" + this.apiKey + "&player=" + name);
@@ -94,10 +91,18 @@ package com.hypixel {
 				loader.load(request);
 			}
 		}
-		public function getPlayer(name: String) {
+		public function loadBoosters() :void{
+			if(approvedKey) {
+				var loader: URLLoader = new URLLoader();
+				var request: URLRequest = new URLRequest(URL_BASE + "boosters?key=" + this.apiKey);
+				loader.addEventListener(Event.COMPLETE, getBoostersData);
+				loader.load(request);
+			}
+		}
+		public function getPlayer(name: String) :hypixelPlayer{
 			return players[name.toLocaleLowerCase()];
 		}
-		public function getGuild(name: String) {
+		public function getGuild(name: String) :hypixelGuild{
 			return guilds[name.toLocaleLowerCase()];
 		}
 		public function getSession(id: String) {
@@ -167,6 +172,18 @@ package com.hypixel {
 				dispatchEvent(new sessionLoaded(session));
 			} else {
 				dispatchEvent(new sessionLoaded(null));
+			}
+		}
+		private function getBoostersData(evt: Event) :void{
+			var data: Object = jsonDecode(evt.target.data);
+			if(data['success'] && data['boosters'] != null) {
+				var Boosters:Array = [];
+				for (var i in data['boosters']) {
+					Boosters.push(new hypixelBooster(data['boosters'][i]));
+				}
+				dispatchEvent(new boostersLoaded(Boosters));
+			} else {
+				dispatchEvent(new boostersLoaded(null));
 			}
 		}
 		private function debugTrace(text: String): void {
