@@ -5,6 +5,7 @@ package com.hypixel {
 		public static const guildLoaded: String = "guildLoaded";
 		public static const friendsLoaded: String = "friendsLoaded";
 		public static const sessionLoaded: String = "sessionLoaded";
+		public static const boostersLoaded: String = "boostersLoaded";
 	}
 
 }
