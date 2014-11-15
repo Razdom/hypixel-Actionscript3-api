@@ -4,6 +4,7 @@ package {
 	import com.hypixel.*;
 	import com.hypixel.data.*;
 	import com.hypixel.events.*;
+	import com.hypixel.objects.*;
 
 	public class example extends MovieClip {
 
