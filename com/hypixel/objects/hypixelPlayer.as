@@ -39,7 +39,7 @@ package com.hypixel.objects {
 			}
 		}
 		public function rank(): String {
-			if(data['rank'] != null) {
+			if(data['rank'] != null && data['rank'] != "NORMAL") {
 				return data['rank'];
 			} else if(data['newPackageRank'] != null) {
 				return data['newPackageRank'];
