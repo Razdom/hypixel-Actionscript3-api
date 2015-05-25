@@ -10,7 +10,9 @@ package com.hypixel.data {
 		public static const Arcade: String = "Arcade";
 		public static const Blitz_Survival_Games: String = "HungerGames";
 		public static const Mega_Walls: String = "Walls3";
-		public static const TNT_Games:String = "TNTGames";
+		public static const UHC:String = "UHC";
+		public static const Warlords:String = "Battleground";
+		public static const Turbo_Kart_Racers:String = "GingerBread";
 	}
 
 }
