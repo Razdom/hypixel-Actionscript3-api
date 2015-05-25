@@ -7,7 +7,7 @@ Dependencies
 ---------------------------
 
 The Hypixel PublicAPI has the following dependencies:
-- json Actionscript class
+- json ActionScript3 class
 
 Documentation
 -------------
@@ -33,4 +33,4 @@ You can create an issue here on GitHub to report a bug with the API or to sugges
 Copyright
 -------
 
-HypixelAPI (c) 2014
+HypixelAPI (c) 2015
