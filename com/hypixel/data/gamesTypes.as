@@ -14,6 +14,7 @@ package com.hypixel.data {
 		public static const Cops_And_Crims: int = 21;
 		public static const Warlords: int = 23;
 		public static const Turbo_Kart_Racers: int = 25;
+		public static const skyWars: int = 51;
 	}
 
 }
