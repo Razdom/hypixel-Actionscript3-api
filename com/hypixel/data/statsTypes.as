@@ -13,6 +13,7 @@ package com.hypixel.data {
 		public static const UHC:String = "UHC";
 		public static const Warlords:String = "Battleground";
 		public static const Turbo_Kart_Racers:String = "GingerBread";
+		public static const skyWars:String = "SkyWars";
 	}
 
 }
